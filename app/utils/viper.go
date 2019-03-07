@@ -42,9 +42,10 @@ func InitViper(configName string, envPrefix string, options []ViperOption) error
 
 	// load conf file
 	viper.SetConfigName(configName)
-	viper.AddConfigPath(".")
-	viper.AddConfigPath("$HOME")
-	viper.AddConfigPath("/etc")
+	viper.AddConfigPath("./app")
+	/*viper.AddConfigPath("/app")*/
+	//viper.AddConfigPath("$HOME")
+	//viper.AddConfigPath("/etc")
 	err := viper.ReadInConfig()
 
 	viper.WatchConfig()

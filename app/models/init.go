@@ -8,10 +8,12 @@ import (
 
 // BaseModel you should define you model with BaseModel
 type BaseModel struct {
-	ID        uint            `gorm:"primary_key" json:"id"`
+	ID        string          `gorm:"primary_key" json:"id"`
 	CreatedAt utils.JSONTime  `json:"createdAt"`
 	UpdatedAt utils.JSONTime  `json:"updatedAt"`
 	DeletedAt *utils.JSONTime `sql:"index" json:"-"`
+	DelFlag   int             `gorm:"column:del_flag"`
+	UsedFlag  int             `gorm:"column:used_flag"`
 }
 
 // MigrationModels save models like &MODEL{} for auto migrate when server starting

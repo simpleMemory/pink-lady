@@ -78,4 +78,6 @@ func main() {
 	apis.RegisterRoutes(app)
 	bind := viper.GetString("server.bind")
 	utils.EndlessServe(bind, app)
+
+	fmt.Println("Hello 毛嗷嗷")
 }

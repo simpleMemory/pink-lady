@@ -2,7 +2,9 @@
 package apis
 
 import (
-	"github.com/axiaoxin/pink-lady/app/apis/demo"
+	book "github.com/axiaoxin/pink-lady/app/apis/book/v1"
+	question "github.com/axiaoxin/pink-lady/app/apis/question/v1"
+
 	// need by swag
 	_ "github.com/axiaoxin/pink-lady/app/docs"
 
@@ -21,21 +23,17 @@ func RegisterRoutes(app *gin.Engine) {
 		x.GET("/ping", Ping)
 	}
 
-	// group demo registered a demo, you can delete it
-	demoGroup := app.Group("/demo")
+	// group book api version 1
+	bookGroup := app.Group("/book/v1")
 	{
-		demoGroup.POST("/label", demo.AddLabel)
-		demoGroup.GET("/label", demo.Label)
-
-		demoGroup.POST("/object", demo.AddObject)
-		demoGroup.GET("/object", demo.Object)
-
-		demoGroup.POST("/labeling", demo.AddLabeling)
-		demoGroup.GET("/labeling/label/:id", demo.GetLabelingByLabelID)
-		demoGroup.GET("/labeling/object/:id", demo.GetLabelingByObjectID)
-		demoGroup.PUT("/labeling", demo.ReplaceLabeling)
-		demoGroup.DELETE("/labeling", demo.DeleteLabeling)
+		bookGroup.GET("/get", book.Get)
+		bookGroup.POST("/save", book.Save)
+		bookGroup.POST("/list", book.Gets)
+		bookGroup.POST("/delete", book.Del)
 	}
 
-	// register your api below
+	questionGroup := app.Group("/question/v1")
+	{
+		questionGroup.GET("/get", question.GetQuestion)
+	}
 }
